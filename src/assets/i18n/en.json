@@ -5,5 +5,6 @@
   "UserName": "User Name",
   "Email": "Email",
   "Password": "Password",
-  "Password_confirmation": "Password confirmation"
+  "Password_confirmation": "Password confirmation",
+  "CreateStory": "New Story"
 }
