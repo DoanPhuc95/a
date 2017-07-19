@@ -1,18 +1,43 @@
 import { Component, OnInit } from '@angular/core';
+import { LogoutService } from './logout.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
-  // ,template: "<h3 *ngIf='loggedin'>abc</h3>"
+  styleUrls: ['./header.component.css'],
+  providers: [ LogoutService ]
 })
 export class HeaderComponent implements OnInit {
-
-  public loggedin;
-  constructor( ) {
-    this.loggedin =  2;
+  private current_user: any;
+  constructor(public logoutService: LogoutService) {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('currentUser')) {
+      this.current_user = JSON.parse(localStorage.getItem('currentUser'));
+    }
+  }
+
+  onNext() {
+    if (localStorage.getItem('currentUser')) {
+      localStorage.removeItem('currentUser');
+      this.current_user = {};
+    }
+  };
+
+  onError() {
+    if (localStorage.getItem('currentUser')) {
+      localStorage.removeItem('currentUser');
+      this.current_user = {};
+    }
+  }
+
+  onComplete() {
+    location.reload();
+  }
+
+  onClick() {
+    this.logoutService.logout(this.current_user.token).subscribe(this.onNext,
+      this.onError, this.onComplete);
   }
 }
