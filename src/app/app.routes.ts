@@ -1,7 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { CreateStoryComponent } from './create-story/create-story.component';
+import { StoryComponent } from './story/story.component';
+import { CreateComponent } from './story/create/create.component';
 
 export const routing: Routes = [
   {
@@ -13,8 +14,15 @@ export const routing: Routes = [
     component: SignupComponent
   },
   {
-    path: 'newstory',
-    component: CreateStoryComponent
+    path: 'story',
+    component: StoryComponent,
+    children: [
+      {
+        path: 'create',
+        component: CreateComponent,
+      }
+    ]
   }
 ];
 export const AppRoutes  = RouterModule.forRoot(routing);
+export const URL = "http://localhost:3000/";
