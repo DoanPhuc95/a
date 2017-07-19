@@ -8,7 +8,11 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
-import { CreateStoryComponent } from './create-story/create-story.component';
+import { StoryComponent } from './story/story.component';
+import { CreateComponent } from './story/create/create.component';
+import { StepComponent } from './story/create/step/step.component';
+import { StoryindexComponent } from './story/storyindex/storyindex.component';
+import { StoryFormComponent } from './story/create/story/story.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { CreateStoryComponent } from './create-story/create-story.component';
     LoginComponent,
     SignupComponent,
     HeaderComponent,
-    CreateStoryComponent
+    StoryComponent,
+    CreateComponent,
+    StepComponent,
+    StoryindexComponent,
+    StoryFormComponent
   ],
   imports: [
     BrowserModule,
