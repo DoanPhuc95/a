@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,15 +9,22 @@ import { LoginService } from './login.service';
   providers: [ LoginService ]
 })
 export class LoginComponent implements OnInit {
-  constructor(public loginService: LoginService) {
+  private User: any = {};
+  private User_info: any = {};
+  constructor(public loginService: LoginService, private router: Router) {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('currentUser')) {
+      this.router.navigate(['']);
+    }
   }
 
   onNext(response) {
     if (response) {
-      alert('login success !');
+      this.User = JSON.parse(response._body);
+      this.User_info = this.User.data.user_info;
+      localStorage.setItem('currentUser', JSON.stringify(this.User_info));
     }
   };
 
@@ -27,7 +35,7 @@ export class LoginComponent implements OnInit {
   };
 
   onCompleted() {
-    window.location.href = '#';
+    location.href = '#';
   };
 
   onSubmit(value: any) {
