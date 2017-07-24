@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute} from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-storyindex',
@@ -14,6 +14,6 @@ export class StoryindexComponent implements OnInit {
   }
 
   onClick() {
-    this.router.navigate(['./create'],{relativeTo: this.route});
+    this.router.navigate(['./create'], {relativeTo: this.route});
   }
 }
