@@ -34,18 +34,21 @@ body {
   .btn-slide {
     background-color: transparent;
     border: none;
-    color: $clouds;
+    color: $asbestos;
     z-index: 999;
+    transform: scale(2, 2);
   }
 
-  .left {
-    position: relative;
-    margin-left: 5px;
+  .btn-left {
+    position: absolute;
+    left: 10%;
+    top: 50%;
   }
 
-  .right {
-    position: relative;
-    margin-right: 5px;
+  .btn-right {
+    position: absolute;
+    right: 10%;
+    top: 50%;
   }
 }
 .container {
@@ -224,6 +227,4 @@ form {
 .btn-slide:hover i {
   transition: all ease .5s;
   transform: scale(5,5);
-  color: $asbestos;
 }
-

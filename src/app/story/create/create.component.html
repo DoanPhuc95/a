@@ -1,9 +1,11 @@
 <div class="p-container">
-  <button (click)="back()" class="btn-slide left" *ngIf="presentStep >= 0">
-    <i class="material-icons">keyboard_arrow_left</i></button>
-  <button (click)="next()" class="btn-slide right"
+  <button (click)="back()" class="btn-slide btn-left" *ngIf="presentStep >= 0">
+    <i class="material-icons">keyboard_arrow_left</i>
+  </button>
+  <button (click)="next()" class="btn-slide btn-right"
     *ngIf="presentStep + 1 < StoryForm.controls['step_forms'].length && !hidden" >
-    <i class="material-icons">keyboard_arrow_right</i></button>
+    <i class="material-icons">keyboard_arrow_right</i>
+  </button>
 
   <form [formGroup]="StoryForm">
     <div class="container" id="story">
@@ -42,7 +44,8 @@
           <div>
             <label>{{'story_form.description' | translate}}</label>
             <textarea cols="46" style="overflow:hidden" wrap="hard"
-              id='description' (input)="autoExpand('description')" formControlName="description">
+              id='description' (input)="autoExpand('description')"
+              formControlName="description">
             </textarea>
           </div>
           <div *ngIf="hidden">
@@ -59,7 +62,7 @@
       <h2>{{'story_form.step_detail' | translate}}</h2>
       <div formArrayName="step_forms" class="row body">
         <div *ngFor="let step of StoryForm.controls.step_forms.controls;
-        let i=index" class="infor-detail">
+          let i=index" class="infor-detail">
 
           <div [formGroupName]="i" id="step{{i}}">
             <h3>{{'story_form.step' | translate}} {{i+1}}</h3>
@@ -70,11 +73,13 @@
 
             <div>
               <label>{{'story_form.content' | translate}}</label>
-            <textarea cols="46" style="overflow:hidden" wrap="hard"
-              id="description{{i}}" (input)="autoExpand('description'+i)" formControlName="content">
-            </textarea>
+              <textarea cols="46" style="overflow:hidden" wrap="hard"
+                id="description{{i}}" (input)="autoExpand('description'+i)"
+                formControlName="content">
+              </textarea>
             </div>
             <hr>
+            <div *ngFor="let substep of StoryForm.controls.step_forms.controls[i].">
           </div>
         </div>
 

@@ -59,7 +59,7 @@ export class CreateComponent implements OnInit {
     $(step).slideUp('slow');
     const control = <FormArray>this.StoryForm.controls['step_forms'];
     control.push(this.initStepForms());
-    this.presentStep = control.length - 1;
+    this.presentStep = control.length -1;
     setInterval(function(){
       $(step).removeClass('animated fadeOutLeft');
     }, 1000);
