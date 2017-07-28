@@ -1,11 +1,12 @@
 <div class="p-container">
-  <button (click)="back()" class="btn-slide btn-left" *ngIf="presentStep >= 0">
+  <a href="" (click)="$event.preventDefault(); back()"
+    class="btn-slide btn-left" *ngIf="presentStep >= 0">
     <i class="material-icons">keyboard_arrow_left</i>
-  </button>
-  <button (click)="next()" class="btn-slide btn-right"
-    *ngIf="presentStep + 1 < StoryForm.controls['step_forms'].length && !hidden" >
+  </a>
+  <a href="" (click)="$event.preventDefault(); next()" class="btn-slide btn-right"
+    *ngIf="presentStep + 1 < StepForm.length && !hidden">
     <i class="material-icons">keyboard_arrow_right</i>
-  </button>
+  </a>
 
   <form [formGroup]="StoryForm">
     <div class="container" id="story">
@@ -61,9 +62,8 @@
     <div class="container" id="step" style="display: none">
       <h2>{{'story_form.step_detail' | translate}}</h2>
       <div formArrayName="step_forms" class="row body">
-        <div *ngFor="let step of StoryForm.controls.step_forms.controls;
-          let i=index" class="infor-detail">
-
+        <div *ngFor="let step of StepForm.controls; let i=index"
+          class="infor-detail">
           <div [formGroupName]="i" id="step{{i}}">
             <h3>{{'story_form.step' | translate}} {{i+1}}</h3>
             <div class="form-group">
@@ -78,14 +78,41 @@
                 formControlName="content">
               </textarea>
             </div>
-            <hr>
-            <div *ngFor="let substep of StoryForm.controls.step_forms.controls[i].">
+            <hr><br>
+
+            <div id="substep{{i}}" style="display: none">
+              <div formArrayName="sub_steps_attributes">
+                <div *ngFor="let substep of getStepForm(i).controls; let j=index">
+                  <div [formGroupName] = "j" id="substep{{j}}">
+                    <div class="form-group">
+                      <label class="center-block">
+                        {{'story_form.step_name' | translate}}
+                      </label>
+                      <input class="form-control" formControlName="name">
+                    </div>
+                    <div>
+                      <label class="form-group">
+                        {{'story_form.content' | translate}}
+                      </label>
+                    <textarea cols="46" style="overflow:hidden" wrap="hard"
+                      id="content{{j}}" (input)="autoExpand('content'+j)"
+                      formControlName="content">
+                    </textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
         <div>
           <button class="btn btn-submit" (click)="newStep()">
             {{'story_form.newstep' | translate}}
+          </button>
+        </div>
+        <div>
+          <button class="btn btn-submit" (click)="newSubStep()">
+            Add New SubStep
           </button>
         </div>
         <div>
@@ -97,3 +124,4 @@
     </div>
   </form>
 </div>
+
