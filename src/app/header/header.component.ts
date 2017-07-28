@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LogoutService } from './logout.service';
 import { LoginComponent } from '../login/login.component'
 import { MdDialog } from '@angular/material';
-<<<<<<< HEAD
 import { SignupComponent } from '../signup/signup.component';
-=======
-import {SignupComponent} from '../signup/signup.component';
->>>>>>> 22931c418547c93fdc3eeae8a194bf161b43a438
 
 @Component({
   selector: 'app-header',

@@ -1,10 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-<<<<<<< HEAD
 import { MdButtonModule } from '@angular/material';
-=======
-import {MdButtonModule} from '@angular/material';
->>>>>>> 22931c418547c93fdc3eeae8a194bf161b43a438
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
