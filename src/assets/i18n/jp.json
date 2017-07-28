@@ -8,6 +8,7 @@
   "password": "パスワード",
   "password_confirmation": "パスワード確認",
   "createstory": "新しい物語",
+  "all_stories": "全て物語",
 
   "story_form": {
     "title": "タイトル",

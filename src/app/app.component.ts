@@ -7,9 +7,9 @@ import * as $ from 'jquery';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
 
-  constructor(private translate: TranslateService) {
+export class AppComponent implements OnInit {
+  constructor(private translate:TranslateService) {
     translate.addLangs(['en', 'jp']);
     translate.setDefaultLang('en');
   }
