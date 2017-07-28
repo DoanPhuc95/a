@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import { CreateStoryService } from './create_story.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
@@ -11,6 +11,7 @@ import * as $ from 'jquery';
   providers: [ FormBuilder, CreateStoryService ]
 })
 export class CreateComponent implements OnInit {
+  public url_image_story = 'http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png';
   private current_user: any;
   StoryForm: FormGroup;
   StepForm: FormArray;
@@ -40,11 +41,12 @@ export class CreateComponent implements OnInit {
       due_date: '',
       is_public: 'true',
       description: '',
-      step_forms: this.formbuilder.array([
+      image: '',
+      step: this.formbuilder.array([
         this.initStepForms()
       ])
     });
-    this.StepForm = <FormArray>this.StoryForm.controls['step_forms'];
+    this.StepForm = <FormArray>this.StoryForm.controls['step'];
   }
 
   initStepForms() {
@@ -160,5 +162,23 @@ export class CreateComponent implements OnInit {
       sessionStorage.clear();
       this.router.navigate(['login']);
     }
+  }
+
+  chooseImage(id: string) {
+    $(id).trigger('click');
+  }
+
+  changeImage(e) {
+    if (e.target.files && e.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = this.getImage.bind(this);
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  }
+
+  getImage(e) {
+    const image = <FileReader> e.target;
+    $("#story_cover").attr("src", image.result);
+    this.StoryForm.value.image = image.result;
   }
 }

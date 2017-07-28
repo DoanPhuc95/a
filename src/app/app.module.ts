@@ -41,7 +41,7 @@ import 'hammerjs';
     BrowserAnimationsModule,
     MdButtonModule,
     MdDialogModule,
-    MdCardModule
+    MdCardModule,
   ],
   entryComponents: [
     LoginComponent,

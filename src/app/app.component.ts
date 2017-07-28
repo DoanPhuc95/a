@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from 'ng2-translate';
 import * as $ from 'jquery';
 
 @Component({
