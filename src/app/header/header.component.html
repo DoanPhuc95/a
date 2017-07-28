@@ -1,4 +1,4 @@
-<nav class="navbar custom-nav">
+<nav class="navbar custom-nav navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">My Stories</a>
@@ -9,15 +9,17 @@
       </li>
 
       <li class="dropdown" *ngIf="current_user; else loginTemplate">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+        <a  md-button data-toggle="dropdown" class="dropdown-toggle" href="#">
           {{current_user.name}}
         </a>
         <ul class="dropdown-menu">
+          <li><a md-button (click)="openDialogInfoUser()">{{'Profile' | translate}}</a></li>
           <li><a md-button (click)="$event.preventDefault();
             onClick()">{{'logout' | translate}}</a></li>
         </ul>
       </li>
-      <li><a routerLink="story/create" *ngIf="current_user">
+
+      <li><a md-button routerLink="story/create" *ngIf="current_user">
         {{'createstory' | translate}}</a>
       </li>
       <li><a routerLink="story" md-button *ngIf="current_user">

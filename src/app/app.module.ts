@@ -11,13 +11,18 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { StoryComponent } from './story/story.component';
+import { StoryService } from './story/shared/story.service';
+import { StoryDetailsComponent } from './story/storyindex/story-details/story-details.component';
 import { StoriesListComponent } from './story/storyindex/stories-list/stories-list.component';
 import { StoryRowComponent } from './story/storyindex/story-row/story-row.component';
 import { CreateComponent } from './story/create/create.component';
 import { StoryindexComponent } from './story/storyindex/storyindex.component';
-import { MdDialogModule, MdCardModule } from '@angular/material';
+import { MdDialogModule, MdCardModule, MdInputModule, MdTooltipModule } from '@angular/material';
 import { LoggedInGuard } from './logged-in.guard';
 import 'hammerjs';
+import { UpdateUserComponent } from './updateuser/updateuser.component';
+import { UpdateUserNameComponent } from './updateuser/update-user-name/update-user-name.component'
+import { InfoUserComponent } from './info-user/info-user.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,11 @@ import 'hammerjs';
     CreateComponent,
     StoryindexComponent,
     StoriesListComponent,
-    StoryRowComponent
+    StoryRowComponent,
+    UpdateUserComponent,
+    UpdateUserNameComponent,
+    InfoUserComponent,
+    StoryDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,12 +51,16 @@ import 'hammerjs';
     MdButtonModule,
     MdDialogModule,
     MdCardModule,
+    MdInputModule,
+    MdTooltipModule
   ],
   entryComponents: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    InfoUserComponent,
+    UpdateUserNameComponent
   ],
-  providers: [LoggedInGuard],
+  providers: [LoggedInGuard, StoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

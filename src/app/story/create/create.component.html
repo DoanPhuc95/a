@@ -13,11 +13,9 @@
       <div class="row header">
         <h2>{{'createstory' | translate}}</h2>
       </div>
-
       <div class="row body">
         <div class="infor-detail">
           <div class="col-md-7">
-
             <div>
               <p class="left">
                 <label >{{'story_form.title' | translate}}</label>
@@ -25,7 +23,6 @@
                   placeholder="Title" formControlName="name"/>
               </p>
             </div>
-
             <div>
               <p class="left">
                 <label>{{'story_form.public' | translate}}</label>
@@ -35,7 +32,6 @@
                 </select>
               </p>
             </div>
-
             <div>
               <p class="left">
                 <label>{{'story_form.duedate' | translate}}</label>
@@ -49,10 +45,10 @@
               <img [src]="url_image_story" id="story_cover">
               <a class="upload-pic" href=""
                 (click)="$event.preventDefault(); chooseImage('#imageInput')">
-                Upload Pic
+                <i class="material-icons">linked_camera</i>
               </a>
               <input type="file" id="imageInput" style="display: none"
-                (change)="changeImage($event)">
+                (change)="onChange($event, 0)">
             </div>
           </div>
           <div class="description">
@@ -70,7 +66,6 @@
         </div>
       </div>
     </div>
-
     <div class="container" id="step" style="display: none">
       <h2>{{'story_form.step_detail' | translate}}</h2>
       <div formArrayName="step" class="row body">
@@ -82,7 +77,6 @@
               <label class="center-block">{{'story_form.step_name' | translate}}</label>
               <input class="form-control" formControlName="name">
             </div>
-
             <div>
               <label>{{'story_form.content' | translate}}</label>
               <textarea cols="46" style="overflow:hidden" wrap="hard"
@@ -91,25 +85,37 @@
               </textarea>
             </div>
             <hr><br>
-
-            <div id="substep{{i}}" style="display: none">
+            <div id="substep{{i}}">
               <div formArrayName="sub_steps_attributes">
                 <div *ngFor="let substep of getStepForm(i).controls; let j=index">
                   <div [formGroupName] = "j">
-                    <div class="form-group">
-                      <label class="center-block">
-                        {{'story_form.step_name' | translate}}
-                      </label>
-                      <input class="form-control" formControlName="name">
+                    <div class="col-md-7">
+                      <div class="form-group">
+                        <label class="center-block">
+                          {{'story_form.step_name' | translate}}
+                        </label>
+                        <input class="form-control" formControlName="name">
+                      </div>
+                      <div>
+                        <label class="form-group">
+                          {{'story_form.content' | translate}}
+                        </label>
+                        <textarea cols="46" style="overflow:hidden" wrap="hard"
+                          id="content{{j}}" (input)="autoExpand('content'+j)"
+                          formControlName="content">
+                        </textarea>
+                      </div>
                     </div>
-                    <div>
-                      <label class="form-group">
-                        {{'story_form.content' | translate}}
-                      </label>
-                    <textarea cols="46" style="overflow:hidden" wrap="hard"
-                      id="content{{j}}" (input)="autoExpand('content'+j)"
-                      formControlName="content">
-                    </textarea>
+                    <div class="col-md-5">
+                      <div class="text-center">
+                        <img [src]="url_image_story" id="image{{i}}_{{j}}">
+                        <a class="upload-pic" href=""
+                          (click)="$event.preventDefault(); chooseImage('#input'+i+'_'+j)">
+                          <i class="material-icons">linked_camera</i>
+                        </a>
+                        <input type="file" style="display: none" id="input{{i}}_{{j}}"
+                          (change)="onChange($event, j)">
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, FormControl} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { CreateStoryService } from './create_story.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
@@ -11,11 +11,12 @@ import * as $ from 'jquery';
   providers: [ FormBuilder, CreateStoryService ]
 })
 export class CreateComponent implements OnInit {
-  public url_image_story = 'http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png';
+  url_image_story = 'http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png';
   private current_user: any;
   StoryForm: FormGroup;
   StepForm: FormArray;
   hidden = true;
+  sub_temp: number;
   private presentStep = -1;
   constructor(private formbuilder: FormBuilder, private router: Router,
     private createService: CreateStoryService) {
@@ -42,9 +43,7 @@ export class CreateComponent implements OnInit {
       is_public: 'true',
       description: '',
       image: '',
-      step: this.formbuilder.array([
-        this.initStepForms()
-      ])
+      step: this.formbuilder.array([])
     });
     this.StepForm = <FormArray>this.StoryForm.controls['step'];
   }
@@ -53,44 +52,39 @@ export class CreateComponent implements OnInit {
     return this.formbuilder.group({
       name: '',
       content: '',
-      sub_steps_attributes: this.formbuilder.array([
-        this.initSubStepForm()
-      ])
+      sub_steps_attributes: this.formbuilder.array([])
     });
   }
 
   initSubStepForm() {
     return this.formbuilder.group({
       name: '',
-      content: ''
+      content: '',
+      image: ''
     })
   }
 
   createStep() {
+    this.StepForm.push(this.initStepForms());
+    this.presentStep = this.StepForm.length - 1;
     $('#story').slideUp('slow', function() {
       $('#step').fadeIn('slow');
     });
-    this.presentStep += 1;
     this.hidden = false;
   }
 
   newSubStep() {
-    const sub = "#substep" + this.presentStep;
-    if ($(sub).is(':hidden')) {
-      $(sub).fadeIn();
-      return;
-    }
     const control = <FormArray> this.getStepForm(this.presentStep);
     control.push(this.initSubStepForm());
   }
 
   newStep() {
-    window.scroll(0,0);
+    window.scroll(0, 0);
     const step = '#step' + this.presentStep;
     $(step).addClass('animated fadeOutLeft');
     $(step).slideUp('slow');
     this.StepForm.push(this.initStepForms());
-    this.presentStep = this.StepForm.length -1;
+    this.presentStep = this.StepForm.length - 1;
     setInterval(function() {
       $(step).removeClass('animated fadeOutLeft');
     }, 1000);
@@ -98,8 +92,11 @@ export class CreateComponent implements OnInit {
 
   next() {
     if (this.presentStep === -1) {
-      this.createStep();
-      return ;
+      $('#story').slideUp('slow', function() {
+        $('#step').fadeIn('slow');
+      });
+      this.presentStep += 1;
+      return;
     }
     const step = '#step' + this.presentStep;
     this.presentStep += 1;
@@ -159,26 +156,36 @@ export class CreateComponent implements OnInit {
         localStorage.removeItem('currentUser');
       }
       this.current_user = {};
-      sessionStorage.clear();
       this.router.navigate(['login']);
     }
   }
 
   chooseImage(id: string) {
+    console.log(id);
     $(id).trigger('click');
   }
 
-  changeImage(e) {
+  onChange(e, id: number) {
     if (e.target.files && e.target.files[0]) {
+      if (this.presentStep >= 0) {
+        this.sub_temp = id;
+      }
       const reader = new FileReader();
-      reader.onload = this.getImage.bind(this);
+      reader.onload = this.changeImage.bind(this);
       reader.readAsDataURL(e.target.files[0]);
     }
   }
 
-  getImage(e) {
+  changeImage(e) {
     const image = <FileReader> e.target;
-    $("#story_cover").attr("src", image.result);
-    this.StoryForm.value.image = image.result;
+    if (this.presentStep === -1) {
+      $('#story_cover').attr('src', image.result);
+      this.StoryForm.value.image = image.result;
+    } else {
+      const img = '#image' + this.presentStep + '_' + this.sub_temp;
+      $(img).attr('src', image.result);
+      const sub_step = <FormGroup>this.getStepForm(this.presentStep).controls[this.sub_temp];
+      sub_step.value.image = image.result;
+    }
   }
 }
