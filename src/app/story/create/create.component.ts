@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { CreateStoryService } from './create_story.service';
-import { Step } from './data-model';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 
@@ -14,6 +13,7 @@ import * as $ from 'jquery';
 export class CreateComponent implements OnInit {
   private current_user: any;
   StoryForm: FormGroup;
+  StepForm: FormArray;
   hidden = true;
   private presentStep = -1;
   constructor(private formbuilder: FormBuilder, private router: Router,
@@ -24,9 +24,14 @@ export class CreateComponent implements OnInit {
     this.current_user = JSON.parse(localStorage.getItem('currentUser'));
     this.createForm();
     $('#story').addClass('animated fadeInLeft');
-    setInterval(function(){
+    setInterval(function() {
       $('#story').removeClass('animated fadeInLeft');
     }, 1000);
+  }
+
+  getStepForm(i: number): FormArray {
+    const step = <FormGroup> this.StepForm.controls[i];
+    return <FormArray>step.controls['sub_steps_attributes'];
   }
 
   createForm() {
@@ -39,10 +44,24 @@ export class CreateComponent implements OnInit {
         this.initStepForms()
       ])
     });
+    this.StepForm = <FormArray>this.StoryForm.controls['step_forms'];
   }
 
   initStepForms() {
-    return this.formbuilder.group(new Step());
+    return this.formbuilder.group({
+      name: '',
+      content: '',
+      sub_steps_attributes: this.formbuilder.array([
+        this.initSubStepForm()
+      ])
+    });
+  }
+
+  initSubStepForm() {
+    return this.formbuilder.group({
+      name: '',
+      content: ''
+    })
   }
 
   createStep() {
@@ -53,20 +72,29 @@ export class CreateComponent implements OnInit {
     this.hidden = false;
   }
 
+  newSubStep() {
+    const sub = "#substep" + this.presentStep;
+    if ($(sub).is(':hidden')) {
+      $(sub).fadeIn();
+      return;
+    }
+    const control = <FormArray> this.getStepForm(this.presentStep);
+    control.push(this.initSubStepForm());
+  }
+
   newStep() {
+    window.scroll(0,0);
     const step = '#step' + this.presentStep;
     $(step).addClass('animated fadeOutLeft');
     $(step).slideUp('slow');
-    const control = <FormArray>this.StoryForm.controls['step_forms'];
-    control.push(this.initStepForms());
-    this.presentStep = control.length - 1;
-    setInterval(function(){
+    this.StepForm.push(this.initStepForms());
+    this.presentStep = this.StepForm.length -1;
+    setInterval(function() {
       $(step).removeClass('animated fadeOutLeft');
     }, 1000);
   }
 
   next() {
-    console.log(this.presentStep);
     if (this.presentStep === -1) {
       this.createStep();
       return ;
@@ -77,7 +105,7 @@ export class CreateComponent implements OnInit {
     $(step_next).fadeIn();
     $(step).addClass('animated fadeOutLeft');
     $(step).slideUp('slow');
-    setInterval(function(){
+    setInterval(function() {
       $(step).removeClass('animated fadeOutLeft');
     }, 1000);
   }
@@ -88,14 +116,14 @@ export class CreateComponent implements OnInit {
       $(step).addClass('animated fadeOutDown');
       $(step).fadeOut();
       $(step).removeClass('animated fadeOutDown');
-      setInterval(function(){
+      setInterval(function() {
         $(step).removeClass('animated fadeOutDown');
       }, 1000);
       this.presentStep -= 1;
       const step_back = '#step' + this.presentStep;
       $(step_back).fadeIn();
       $(step_back).addClass('animated fadeInLeft');
-      setInterval(function(){
+      setInterval(function() {
         $(step_back).removeClass('animated fadeInRight');
       }, 1000);
       return;
@@ -111,11 +139,9 @@ export class CreateComponent implements OnInit {
     textarea.style.height = '72px';
     const contentHeight = document.getElementById(id).scrollHeight;
     textarea.style.height = contentHeight + 'px';
-    window.scroll(0, contentHeight);
   }
 
   submit() {
-    console.log(this.presentStep);
     this.createService.createStory(this.StoryForm.value,
       this.current_user.token).subscribe(response => this.onSuccess(response),
       response => this.onError(response));
