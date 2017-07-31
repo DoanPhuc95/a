@@ -148,7 +148,7 @@ export class CreateComponent implements OnInit {
 
   form_is_invalid(): boolean {
     if (this.StoryForm.dirty && this.StoryForm.valid) {
-      return this.StoryForm.value.image === '';
+      return this.StoryForm.value.image != '';
     }
     return true;
   }

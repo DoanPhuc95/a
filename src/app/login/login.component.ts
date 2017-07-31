@@ -5,7 +5,6 @@ import { SignupComponent } from '../signup/signup.component';
 import { MdDialog } from '@angular/material';
 import { MdSnackBar } from '@angular/material';
 import { MdTooltipModule } from '@angular/material';
-import { TranslateService } from 'ng2-translate';
 
 @Component({
   selector: 'app-login',
@@ -18,8 +17,7 @@ export class LoginComponent implements OnInit {
   private User: any = {};
   private User_info: any = {};
   constructor(public loginService: LoginService, private router: Router,
-    public dialog: MdDialog, public snackBar: MdSnackBar,
-    private translate: TranslateService) {
+    public dialog: MdDialog, public snackBar: MdSnackBar) {
   }
 
   ngOnInit() {
@@ -35,14 +33,14 @@ export class LoginComponent implements OnInit {
       this.User_info = this.User.data.user_info;
       localStorage.setItem('currentUser', JSON.stringify(this.User_info));
       location.reload();
-      this.snackBar.open(this.translate.instant('loginsuccess'), '', {
+      this.snackBar.open('Login success !', '', {
         duration: 5000
-      });
+      })
     }
   };
 
   onError(response) {
-    this.snackBar.open(this.translate.instant('loginfalse'), '', {
+    this.snackBar.open('invalid email or password !', '', {
       duration: 5000
     })
   };
