@@ -5,6 +5,7 @@ $blue: #4f6fad;
 $pink: #ee9cb4;
 $asbestos: #7f8c8d;
 $clouds: #ecf0f1;
+$alizarin: #e74c3c;
 
 @mixin lato-book { font-family: 'Lato', sans-serif; font-weight: 300; }
 @mixin lato-reg { font-family: 'Lato', sans-serif; font-weight: 400; }
@@ -29,7 +30,7 @@ body {
 .p-container {
   max-width: 1000px;
   min-width: 324px;
-  margin: 0 auto 0;
+  margin: 50px auto 0;
 
   .btn-slide {
     background-color: transparent;
@@ -300,4 +301,30 @@ form {
   transform: scale(4,4);
   color: deepskyblue;
   transition: all ease .5s;
+}
+
+.remove-icon {
+  color: $alizarin;
+   i {
+     transform: rotate(90deg);
+
+     &:hover {
+       transition: all ease .4s;
+       transform: rotate(0deg);
+     }
+   }
+}
+
+.del-icon {
+  color: $dark_grey;
+}
+
+.del-icon:hover i {
+  transition: all ease .4s;
+  transform: scale(2, 2);
+}
+
+.add-icon:hover i {
+  transition: all ease .4s;
+  transform: scale(2, 2);
 }
