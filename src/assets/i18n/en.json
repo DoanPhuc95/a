@@ -29,7 +29,9 @@
     "current_password": "Current Password",
     "password": "New Password",
     "password_cofirmation": "New Password Confirmation",
-    "submit": "Submit"
+    "submit": "Submit",
+    "change_name": "Change UserName",
+    "change_password": "Change password"
   },
   "not-have-account": "You do not have an account",
   "loginsuccess": "Login success !",
@@ -41,9 +43,14 @@
     "name": "Name",
     "description": "Description",
     "total_votes": "Total Votes",
-    "number_of_steps": "Number of Steps"
+    "number_of_steps": "Number of Steps",
+    "steps": "Steps"
   },
   "step": {
     "votes": "Votes"
-  }
+  },
+  "comment": "Comment",
+  "writecomment": "Write a comment",
+  "like": "Like",
+  "voted": "Voted :"
 }

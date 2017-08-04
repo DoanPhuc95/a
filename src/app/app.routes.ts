@@ -7,19 +7,32 @@ import { CreateComponent } from './story/create/create.component';
 import { LoggedInGuard } from './logged-in.guard';
 import { UpdateUserComponent } from './updateuser/updateuser.component';
 import { InfoUserComponent } from './info-user/info-user.component';
-
+import { HomeComponent } from './home/home.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoryDetailsComponent } from './categories/category-details/category-details.component'
+import {StoryResolverService} from './story/shared/story-resolver.service';
 export const routing: Routes = [
   { path: 'story', component: StoryComponent, canActivate: [LoggedInGuard],
     children: [
       { path: 'list', component: StoriesListComponent,
         resolve: {stories: StoriesListResolverService}},
-      { path: 'create', component: CreateComponent },
-      { path: ':id', component: StoryDetailsComponent }
+      { path: 'create', component: CreateComponent, },
+      { path: ':id', component: StoryDetailsComponent,
+        resolve: {story: StoryResolverService}
+      }
     ]
   },
-  { path: 'user/edit', component: UpdateUserComponent,
+  { path: 'category', component: CategoriesComponent,
+    children: [
+      { path: ':id', component: CategoryDetailsComponent }
+    ]
+  },
+  { path: 'user', component: InfoUserComponent,
     canActivate: [LoggedInGuard],
   },
+  {
+    path: 'home', component: HomeComponent
+  }
 ];
 export const AppRoutes  = RouterModule.forRoot(routing);
 export const URL = 'http://localhost:3000/';

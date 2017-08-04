@@ -26,9 +26,9 @@ export class UpdateUserComponent implements OnInit {
     }
   }
   onUpdateName(){
-    this.dialog.open(UpdateUserNameComponent)
+    this.dialog.open(UpdateUserNameComponent);
   }
   onUpdatePassword(){
-    this.dialog.open(UpdateUserPasswordComponent)
+    this.dialog.open(UpdateUserPasswordComponent);
   }
 }

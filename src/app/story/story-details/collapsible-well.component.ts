@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import {IStep} from '../shared/story.model';
-import {SubStepComponent} from './sub-step.component';
+import { IStep } from '../shared/story.model';
+import { SubStepComponent } from './sub-step.component';
 import { MdDialog } from '@angular/material';
 
 @Component({
@@ -16,12 +16,10 @@ import { MdDialog } from '@angular/material';
 })
 
 export class CollapsibleWellComponent {
-
   visible = true;
-
-  constructor(private dialog: MdDialog) { }
   @Input() name: string;
   @Input() step: IStep;
+  constructor(private dialog: MdDialog) { }
 
   toggleContent() {
     this.visible = !this.visible;
