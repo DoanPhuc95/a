@@ -9,14 +9,15 @@ import { UpdateUserComponent } from './updateuser/updateuser.component';
 import { InfoUserComponent } from './info-user/info-user.component';
 import { HomeComponent } from './home/home.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { CategoryDetailsComponent } from './categories/category-details/category-details.component'
-import {StoryResolverService} from './story/shared/story-resolver.service';
+import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
+import { StoryResolverService } from './story/shared/story-resolver.service';
+
 export const routing: Routes = [
   { path: 'story', component: StoryComponent, canActivate: [LoggedInGuard],
     children: [
       { path: 'list', component: StoriesListComponent,
         resolve: {stories: StoriesListResolverService}},
-      { path: 'create', component: CreateComponent, },
+      { path: 'create', component: CreateComponent },
       { path: ':id', component: StoryDetailsComponent,
         resolve: {story: StoryResolverService}
       }
@@ -31,7 +32,7 @@ export const routing: Routes = [
     canActivate: [LoggedInGuard],
   },
   {
-    path: 'home', component: HomeComponent
+    path: '', component: HomeComponent
   }
 ];
 export const AppRoutes  = RouterModule.forRoot(routing);

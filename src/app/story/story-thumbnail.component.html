@@ -1,2 +1,25 @@
-<h1 [routerLink]="['/story', story.id]">{{story.name}} | {{story.id}}</h1>
-
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-4">
+        <img [src]= "story.picture.url" class="image-cover">
+      </div>
+      <div class="col-md-8">
+        <h3 class="title" [routerLink]="['/story', story.id]">{{story.name}}</h3>
+        <h5 class="fa-user">
+          <a class="meta-post"><i class="material-icons">person_outline</i>
+            <p class="content">Doan Minh Phuc</p>
+          </a>
+          <a class="meta-post"><i class="material-icons">event_note</i>
+            <p class="content">{{story.created_at | date}}</p>
+          </a>
+        </h5>
+        <br>
+        <div class="content">{{story.description}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+<hr>

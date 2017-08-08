@@ -29,9 +29,7 @@
     "current_password": "今のパスワード",
     "password": "新たなパスワード",
     "password_cofirmation": "新たなパスワード確認",
-    "submit": "提出",
-    "change_name": "ユーザー名を変更する",
-    "change_password": "パスワードを変更する"
+    "submit": "提出"
   },
   "not-have-account": "アカウントがない",
   "loginsuccess": "ログインに成功しました",
@@ -43,14 +41,6 @@
     "name": "物語名",
     "description": "説明",
     "total_votes": "投票数",
-    "number_of_steps": "ステップ数",
-    "steps": "ステップ"
-  },
-  "step": {
-    "votes": "Votes"
-  },
-  "comment": "コメント",
-  "writecomment": "コメントする",
-  "like": "いいね！",
-  "voted": "「いいね！」した :"
+    "number_of_steps": "ステップ数"
+  }
 }

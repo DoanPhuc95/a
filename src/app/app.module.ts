@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MdButtonModule, MdSelectModule, MdMenuModule} from '@angular/material';
+import { MdButtonModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -12,8 +12,12 @@ import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { StoryComponent } from './story/story.component';
 import { CreateComponent } from './story/create/create.component';
-import { MdDialogModule, MdCardModule, MdInputModule,
-  MdDatepickerModule, MdNativeDateModule, MdTooltipModule } from '@angular/material';
+import { MdDialogModule,
+  MdCardModule,
+  MdInputModule,
+  MdTooltipModule,
+  MdMenuModule
+} from '@angular/material';
 import { LoggedInGuard } from './logged-in.guard';
 import 'hammerjs';
 import { UpdateUserComponent } from './updateuser/updateuser.component';
@@ -31,12 +35,20 @@ import { NewStoriesComponent } from './home/new-stories/new-stories.component';
 import { HotStoriesComponent } from './home/hot-stories/hot-stories.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
-import { CollapsibleWellComponent } from './story/story-details/collapsible-well.component';
-import { StoriesListComponent, StoryThumbnailComponent, StepListComponent,
-  StoryDetailsComponent, StoryService, StoriesListResolverService,
-  UpvoteComponent, VoteService, SubStepComponent } from './story/index';
-import {StoryResolverService} from './story/shared/story-resolver.service';
 import { CommentComponent } from './story/story-details/comment/comment.component';
+import { CollapsibleWellComponent } from './story/story-details/collapsible-well.component';
+import {
+  StoriesListComponent,
+  StoryThumbnailComponent,
+  StoryDetailsComponent,
+  StoryService,
+  StoriesListResolverService,
+  StepListComponent,
+  UpvoteComponent,
+  VoteService,
+  SubStepComponent
+} from './story/index';
+import { StoryResolverService } from './story/shared/story-resolver.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +77,7 @@ import { CommentComponent } from './story/story-details/comment/comment.componen
     HotStoriesComponent,
     CategoriesComponent,
     CategoryDetailsComponent,
-    CommentComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -85,9 +97,6 @@ import { CommentComponent } from './story/story-details/comment/comment.componen
     MdToolbarModule,
     MdChipsModule,
     MdGridListModule,
-    MdSelectModule,
-    MdDatepickerModule,
-    MdNativeDateModule,
     MdMenuModule
   ],
   entryComponents: [
@@ -103,8 +112,8 @@ import { CommentComponent } from './story/story-details/comment/comment.componen
     LoggedInGuard,
     StoryService,
     StoriesListResolverService,
-    StoryResolverService,
-    VoteService
+    VoteService,
+    StoryResolverService
   ],
   bootstrap: [AppComponent]
 })

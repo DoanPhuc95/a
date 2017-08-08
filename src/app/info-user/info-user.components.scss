@@ -1,7 +1,8 @@
 $whitec: #FFF;
+$greyc: #eee;
 
 .top-head {
-  background-image: url("http://www.amazingwallpaperz.com/wp-content/uploads/Pine-Tree-Forest-Wallpaper-Background-HD.jpg");
+  background-image: url("../img/cover-user.jpg");
   height: 300px;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -23,12 +24,12 @@ h1.logo {
 }
 
 .dp {
-  border: 10px solid #eee;
+  border: 10px solid $greyc;
   transition: all 0.2s ease-in-out;
 }
 
 .dp:hover {
-  border: 2px solid #eee;
+  border: 2px solid $greyc;
   transform: rotate(360deg);
   -ms-transform: rotate(360deg);
   -webkit-transform: rotate(360deg);
@@ -49,7 +50,7 @@ h1.logo {
 }
 .image {
   width: 200px;
-  height:200px;
+  height: 200px;
 }
 .cover-img {
   padding-left: 70px;

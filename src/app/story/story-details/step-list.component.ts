@@ -15,7 +15,7 @@ export class StepListComponent implements OnDestroy {
   current_user = JSON.parse(localStorage.currentUser);
   @Input() story_id: number;
   @Input() steps: IStep[];
-  
+
   constructor(private voteService: VoteService,
     private dialog: MdDialog) { }
 
@@ -37,8 +37,8 @@ export class StepListComponent implements OnDestroy {
 
   openSubStepDialog(step) {
     const dialogRef = this.dialog.open(SubStepComponent, {
-      height: '550px',
-      width: '1000px',
+      height: '82%',
+      width: '75%'
     });
     dialogRef.componentInstance.name = step.name;
     dialogRef.componentInstance.sub_steps = step.sub_steps;

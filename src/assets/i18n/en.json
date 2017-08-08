@@ -30,7 +30,7 @@
     "password": "New Password",
     "password_cofirmation": "New Password Confirmation",
     "submit": "Submit",
-    "change_name": "Change UserName",
+    "change_name": "Change name",
     "change_password": "Change password"
   },
   "not-have-account": "You do not have an account",
@@ -49,8 +49,11 @@
   "step": {
     "votes": "Votes"
   },
-  "comment": "Comment",
-  "writecomment": "Write a comment",
-  "like": "Like",
-  "voted": "Voted :"
+  "home": {
+    "line1": "Nơi mà bạn chia sẻ những kiến thức, kỹ năng và kinh nhiệm bạn có được trong quá trình học",
+    "line2": "Cùng nhau xây dựng những công thức, những quá trình, và những phương pháp học",
+    "line3": "để đạt được kết quả tốt nhất",
+    "new_story": "New Story",
+    "hot_story": "Hot Story"
+  }
 }
