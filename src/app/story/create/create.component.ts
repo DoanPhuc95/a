@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreateStoryService } from './create_story.service';
 import { Router } from '@angular/router';
 import { TranslateService } from 'ng2-translate';
-import { MdSnackBar } from '@angular/material';
+import { MdSnackBar, MdDialog } from '@angular/material';
+import { LoadingComponent } from '../../loading.component';
 import * as $ from 'jquery';
 
 @Component({
@@ -12,8 +13,8 @@ import * as $ from 'jquery';
   styleUrls: ['./create.component.scss'],
   providers: [FormBuilder, CreateStoryService, MdSnackBar]
 })
-export class CreateComponent implements OnInit {
-  url_image_story = 'http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png';
+export class CreateComponent implements OnInit, OnDestroy {
+  url_image_story = '../../../assets/picture/default.png';
   private current_user: any;
   StoryForm: FormGroup;
   PackageStoryForm: FormGroup;
@@ -24,8 +25,9 @@ export class CreateComponent implements OnInit {
 
   private presentStep = -1;
   constructor(private formbuilder: FormBuilder, private router: Router,
-    private createService: CreateStoryService, private snackBar: MdSnackBar,
-    private translate: TranslateService, public createStoryService: CreateStoryService) {
+    private createService: CreateStoryService, private dialog: MdDialog,
+    private snackBar: MdSnackBar, private translate: TranslateService,
+    public createStoryService: CreateStoryService) {
   }
 
   ngOnInit() {
@@ -34,9 +36,13 @@ export class CreateComponent implements OnInit {
     this.createStoryService.getCategory().
     subscribe(response => this.onSuccessCategory(response));
     $('#story').addClass('animated fadeInLeft');
-    setInterval(function() {
+    setTimeout(function() {
       $('#story').removeClass('animated fadeInLeft');
     }, 1500);
+  }
+
+  ngOnDestroy() {
+    this.dialog.closeAll();
   }
 
   onSuccessCategory(response) {
@@ -100,7 +106,7 @@ export class CreateComponent implements OnInit {
     $(step).slideUp('slow');
     this.StepForm.push(this.initStepForms());
     this.presentStep = this.StepForm.length - 1;
-    setInterval(function() {
+    setTimeout(function() {
       $(step).removeClass('animated fadeOutLeft');
     }, 1500);
   }
@@ -119,7 +125,7 @@ export class CreateComponent implements OnInit {
     $(step_next).fadeIn();
     $(step).addClass('animated fadeOutLeft');
     $(step).slideUp('slow');
-    setInterval(function() {
+    setTimeout(function() {
       $(step).removeClass('animated fadeOutLeft');
     }, 1500);
   }
@@ -130,14 +136,14 @@ export class CreateComponent implements OnInit {
       $(step).addClass('animated fadeOutDown');
       $(step).fadeOut();
       $(step).removeClass('animated fadeOutDown');
-      setInterval(function() {
+      setTimeout(function() {
         $(step).removeClass('animated fadeOutDown');
       }, 1500);
       this.presentStep -= 1;
       const step_back = '#step' + this.presentStep;
       $(step_back).fadeIn();
       $(step_back).addClass('animated fadeInLeft');
-      setInterval(function() {
+      setTimeout(function() {
         $(step_back).removeClass('animated fadeInLeft');
       }, 1500);
       return;
@@ -157,14 +163,14 @@ export class CreateComponent implements OnInit {
 
   form_is_invalid(): boolean {
     if (this.StoryForm.dirty && this.StoryForm.valid) {
-      return this.StoryForm.value.picture === '';
+      return this.StoryForm.value.image === '';
     }
     return true;
   }
 
   submit() {
     if (this.form_is_invalid()) {
-      this.snackBar.open( this.translate.instant('story_form.blank_noti') , '', {
+      this.snackBar.open(this.translate.instant('story_form.blank_noti') , '', {
         duration: 5000
       });
       return;
@@ -172,12 +178,15 @@ export class CreateComponent implements OnInit {
       this.createService.createStory(this.PackageStoryForm.value,
         this.current_user.token).subscribe(response => this.onSuccess(response),
         response => this.onError(response));
+      this.showAlert();
     }
-
   }
 
   onSuccess(response) {
     if (response) {
+      this.snackBar.open(this.translate.instant('story_form.done'), '', {
+        duration: 5000
+      });
       const story = JSON.parse(response._body).data.story;
       this.router.navigate(['story', story.id]);
     }
@@ -190,6 +199,11 @@ export class CreateComponent implements OnInit {
       }
       this.current_user = {};
       this.router.navigate(['']);
+    } else {
+      this.dialog.closeAll();
+      this.snackBar.open(this.translate.instant('story_form.cantcreate'), '', {
+        duration: 5000
+      });
     }
   }
 
@@ -243,7 +257,7 @@ export class CreateComponent implements OnInit {
       const step_back = '#step' + this.presentStep;
       $(step_back).fadeIn();
       $(step_back).addClass('animated fadeInLeft');
-      setInterval(function() {
+      setTimeout(function() {
         $(step_back).removeClass('animated fadeInLeft');
       }, 1500);
       return;
@@ -251,8 +265,16 @@ export class CreateComponent implements OnInit {
     const step_next = '#step' + (this.presentStep + 1);
     $(step_next).fadeIn();
     $(step_next).addClass('animated fadeInRight');
-    setInterval(function() {
+    setTimeout(function() {
       $(step).removeClass('animated fadeOutRight');
     }, 1500);
+  }
+
+  showAlert() {
+    const alertdialog = this.dialog.open(LoadingComponent, {
+      height: '115px',
+      width: '220px'
+    });
+    alertdialog.disableClose = true;
   }
 }

@@ -1,5 +1,6 @@
 {
   "homelink": "Home",
+  "start": "Start here",
   "login": "Login",
   "logout": "Log out",
   "signup": "Sign Up",
@@ -22,7 +23,9 @@
     "newstep": "Add New Step",
     "post": "Post",
     "step": "STEP",
-    "blank_noti": "Some fields are blank !"
+    "blank_noti": "Some fields are blank !",
+    "cantcreate": "Cannot create story! Please try again!",
+    "done": "Create Success !"
   },
   "update_user": {
     "name": "New Name",
@@ -44,16 +47,43 @@
     "description": "Description",
     "total_votes": "Total Votes",
     "number_of_steps": "Number of Steps",
-    "steps": "Steps"
-  },
-  "step": {
+    "steps": "Steps",
+    "comment": "Comment",
+    "comments": "Comments",
+    "vote": "Vote",
     "votes": "Votes"
   },
-  "home": {
-    "line1": "Nơi mà bạn chia sẻ những kiến thức, kỹ năng và kinh nhiệm bạn có được trong quá trình học",
-    "line2": "Cùng nhau xây dựng những công thức, những quá trình, và những phương pháp học",
-    "line3": "để đạt được kết quả tốt nhất",
-    "new_story": "New Story",
-    "hot_story": "Hot Story"
-  }
+  "step": {
+    "votes": "Voted",
+    "checkedsuccess": "Substep is done!",
+    "checkederror": "Action does not work! Please try again!",
+    "votederror": "Cannot vote! Please try again!"
+  },
+  "search": {
+    "stories": "Stories",
+    "steps": "Steps",
+    "more": "More",
+    "voted": "Voted",
+    "results1": "There are",
+    "results2": "story results for search"
+  },
+  "writecomment": "Write a comment ...",
+  "comment": "Comment",
+  "like": "Like",
+  "re_send": "Try Again",
+  "user": {
+    "following": "Following",
+    "post": "Post",
+    "voted": "Voted",
+    "des1": "'Tin rằng bạn có thể làm một điều gì đó",
+    "des2": "đồng nghĩa với việc bạn đã đi được nửa đường đến đó'",
+    "des3": "Theodore Roosevelt",
+    "followed": "Followed",
+    "all_stories": "All Stories",
+    "story": "Story",
+    "steps": "Steps",
+    "comment": "Comment",
+    "more": "More"
+  },
+  "loading" : "Loading ..."
 }

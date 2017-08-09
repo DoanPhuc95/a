@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -12,43 +11,31 @@ import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { StoryComponent } from './story/story.component';
 import { CreateComponent } from './story/create/create.component';
-import { MdDialogModule,
-  MdCardModule,
-  MdInputModule,
-  MdTooltipModule,
-  MdMenuModule
-} from '@angular/material';
+import { MdDialogModule, MdCardModule, MdInputModule, MdTooltipModule, MdMenuModule,
+  MdSelectModule, MdDatepickerModule, MdNativeDateModule, MdTabsModule, MdProgressSpinnerModule,
+  MdAutocompleteModule, MdListModule, MdButtonModule, MdSnackBarModule, MdToolbarModule,
+  MdChipsModule, MdGridListModule, MdSidenavModule, MdCheckboxModule} from '@angular/material';
 import { LoggedInGuard } from './logged-in.guard';
+import { NotLoggedInGuard } from './not-logged-in.guard';
 import 'hammerjs';
 import { UpdateUserComponent } from './updateuser/updateuser.component';
 import { UpdateUserNameComponent } from './updateuser/update-user-name/update-user-name.component'
 import { UpdateUserPasswordComponent } from './updateuser/update-user-password/update-user-password.component'
 import { InfoUserComponent } from './info-user/info-user.component';
 import { EditUserDialogComponent } from './info-user/user-dialog.component';
-import { MdSnackBarModule } from '@angular/material';
 import { HomeComponent } from './home/home.component';
-import { MdToolbarModule } from '@angular/material';
-import { MdChipsModule } from '@angular/material';
 import { CategoryComponent } from './home/category/category.component';
-import { MdGridListModule } from '@angular/material';
 import { NewStoriesComponent } from './home/new-stories/new-stories.component';
 import { HotStoriesComponent } from './home/hot-stories/hot-stories.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
 import { CommentComponent } from './story/story-details/comment/comment.component';
-import { CollapsibleWellComponent } from './story/story-details/collapsible-well.component';
-import {
-  StoriesListComponent,
-  StoryThumbnailComponent,
-  StoryDetailsComponent,
-  StoryService,
-  StoriesListResolverService,
-  StepListComponent,
-  UpvoteComponent,
-  VoteService,
-  SubStepComponent
-} from './story/index';
+import { StoriesListComponent, StoryThumbnailComponent, StoryDetailsComponent,
+  StoryService, StoriesListResolverService, StepListComponent, UpvoteComponent,
+  VoteService, SubStepComponent } from './story/index';
+import { SearchComponent } from './search/search.component';
 import { StoryResolverService } from './story/shared/story-resolver.service';
+import { LoadingComponent } from './loading.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +54,6 @@ import { StoryResolverService } from './story/shared/story-resolver.service';
     StoryThumbnailComponent,
     StoryDetailsComponent,
     StepListComponent,
-    CollapsibleWellComponent,
     UpvoteComponent,
     SubStepComponent,
     StoryThumbnailComponent,
@@ -77,7 +63,9 @@ import { StoryResolverService } from './story/shared/story-resolver.service';
     HotStoriesComponent,
     CategoriesComponent,
     CategoryDetailsComponent,
-    CommentComponent
+    SearchComponent,
+    CommentComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,7 +85,19 @@ import { StoryResolverService } from './story/shared/story-resolver.service';
     MdToolbarModule,
     MdChipsModule,
     MdGridListModule,
-    MdMenuModule
+    MdMenuModule,
+    MdSelectModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
+    MdTabsModule,
+    MdAutocompleteModule,
+    MdSidenavModule,
+    MdTabsModule,
+    MdTabsModule,
+    MdListModule,
+    MdSidenavModule,
+    MdCheckboxModule,
+    MdProgressSpinnerModule
   ],
   entryComponents: [
     LoginComponent,
@@ -106,10 +106,12 @@ import { StoryResolverService } from './story/shared/story-resolver.service';
     UpdateUserNameComponent,
     UpdateUserPasswordComponent,
     EditUserDialogComponent,
-    SubStepComponent
+    SubStepComponent,
+    LoadingComponent
   ],
   providers: [
     LoggedInGuard,
+    NotLoggedInGuard,
     StoryService,
     StoriesListResolverService,
     VoteService,
