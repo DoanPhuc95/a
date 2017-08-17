@@ -1,0 +1,54 @@
+<form [formGroup]="StoryForm">
+  <div class="row first-section">
+    <textarea class="form-control story-name text-center custom-input" id="storyname"
+      wrap="hard" formControlName="name" (input)="autoExpand('storyname')"></textarea>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10 image-div">
+        <img src="{{getsrcImage('story')}}" *ngIf="getsrcImage('story')"
+          id="story_cover">
+        <a class="upload-pic" href="#"
+          (click)="$event.preventDefault(); chooseImage('#imageInput')">
+          <i class="material-icons">linked_camera</i>
+        </a>
+        <input type="file" class="choose-file" id="imageInput"
+          (change)="onChange($event, -1, -1)">
+      </div>
+    </div>
+    <textarea value="{{story.description}}" class="form-control custom-input"
+      formControlName="description"></textarea>
+  </div>
+
+  <div formArrayName="step">
+    <div class="row second-section" *ngFor="let step of StepForm.controls; let i = index">
+      <div [formGroupName]="i">
+        <textarea class="form-control custom-input step-name accordion"
+          formControlName="name"></textarea>
+        <textarea class="form-control custom-input step-content"
+          formControlName="content"></textarea>
+
+        <div formArrayName="sub_steps_attributes">
+          <div *ngFor="let substep of getStepForm(i).controls; let j=index" class="panel">
+            <div [formGroupName] = "j">
+              <textarea class="form-control custom-input" formControlName="content"></textarea>
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 image-div">
+                  <img src="{{getsrcImage('step',i,j)}}" *ngIf="getsrcImage('step',i,j)"
+                    id="picture{{i}}_{{j}}">
+                  <a class="upload-pic" href="#"
+                    (click)="$event.preventDefault(); chooseImage('#imageInput'+i+'_'+j)">
+                    <i class="material-icons">linked_camera</i>
+                  </a>
+                  <input type="file" class="choose-file" id="imageInput{{i}}_{{j}}"
+                    (change)="onChange($event, i, j)">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button (click)="onClick()">Save</button>
+</form>
