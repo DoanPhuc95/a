@@ -11,6 +11,7 @@ import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { StoryComponent } from './story/story.component';
 import { CreateComponent } from './story/create/create.component';
+import { CategoryComponent } from './story/category/category.component';
 import { MdDialogModule, MdCardModule, MdInputModule, MdTooltipModule, MdMenuModule,
   MdSelectModule, MdDatepickerModule, MdNativeDateModule, MdTabsModule, MdProgressSpinnerModule,
   MdAutocompleteModule, MdListModule, MdButtonModule, MdSnackBarModule, MdToolbarModule,
@@ -24,7 +25,7 @@ import { UpdateUserPasswordComponent } from './updateuser/update-user-password/u
 import { InfoUserComponent } from './info-user/info-user.component';
 import { EditUserDialogComponent } from './info-user/user-dialog.component';
 import { HomeComponent } from './home/home.component';
-import { CategoryComponent } from './home/category/category.component';
+// import { CategoryComponent } from './home/category/category.component';
 import { NewStoriesComponent } from './home/new-stories/new-stories.component';
 import { HotStoriesComponent } from './home/hot-stories/hot-stories.component';
 import { CategoriesComponent } from './categories/categories.component';
@@ -36,6 +37,7 @@ import { StoriesListComponent, StoryThumbnailComponent, StoryDetailsComponent,
 import { SearchComponent } from './search/search.component';
 import { StoryResolverService } from './story/shared/story-resolver.service';
 import { LoadingComponent } from './loading.component';
+import { StepThumbnailComponent } from './step-thumbnail/step-thumbnail.component';
 import { EditStoryComponent } from './story/story-details/edit/edit.component';
 
 @NgModule({
@@ -67,6 +69,7 @@ import { EditStoryComponent } from './story/story-details/edit/edit.component';
     SearchComponent,
     CommentComponent,
     LoadingComponent,
+    StepThumbnailComponent,
     EditStoryComponent
   ],
   imports: [

@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { IStory } from '../../shared/story.model';
 import * as $ from 'jquery';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IMG_URL } from '../../../app.routes';
 import { EditStoryService } from './edit.service';
+import { MdSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
-  providers: [FormBuilder, EditStoryService]
+  providers: [FormBuilder, EditStoryService, MdSnackBar]
 })
-export class EditStoryComponent implements OnInit {
+export class EditStoryComponent implements OnInit, AfterViewInit {
   url_image_story = '../../../../assets/picture/default.png';
   private current_user: any;
   public story: IStory;
@@ -22,13 +23,20 @@ export class EditStoryComponent implements OnInit {
   step_temp: number;
   substep_temp: number;
 
-  constructor(private formbuilder: FormBuilder, private service: EditStoryService) { }
+  constructor(private formbuilder: FormBuilder, private service: EditStoryService,
+    private snackBar: MdSnackBar) { }
 
   ngOnInit() {
     this.current_user = JSON.parse(localStorage.getItem('currentUser'));
     this.createForm();
   }
 
+  ngAfterViewInit() {
+    for (let textarea of $('textarea')) {
+      this.autoExpand(textarea.id);
+    }
+  }
+  
   createForm() {
     this.PackageStoryForm = this.formbuilder.group({
       story: this.StoryForm = this.formbuilder.group({
@@ -107,11 +115,13 @@ export class EditStoryComponent implements OnInit {
   }
 
   onEditSuccess(response) {
-    console.log(response);
+    window.location.reload();
   }
 
   onEditError(response) {
-    console.log(response);
+    this.snackBar.open('Edit Error!, Please try again!', '', {
+      duration: 5000
+    });
   }
 
   chooseImage(id: string) {
@@ -143,7 +153,7 @@ export class EditStoryComponent implements OnInit {
 
   autoExpand(id: string) {
     const textarea = document.getElementById(id);
-    textarea.style.height = '120px';
+    textarea.style.height = '60px';
     const contentHeight = document.getElementById(id).scrollHeight;
     textarea.style.height = contentHeight + 'px';
   }

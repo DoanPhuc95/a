@@ -29,9 +29,6 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (localStorage.getItem('currentUser')) {
-      this.router.navigate(['']);
-    }
   }
 
   createForm(email:string, password: string) {

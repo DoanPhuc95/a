@@ -17,13 +17,12 @@ $gray: #d7d7d7;
 }
 
 .custom-input {
-  //margin-bottom: 40px;
   border: 0;
   box-shadow: none;
-  //height: 100%;
 }
 
 .story-name {
+  margin-top: 50px;
   font-size: 3em;
 }
 
@@ -59,7 +58,7 @@ $gray: #d7d7d7;
   }
 }
 
-.step-name {
+.step-name, .step-content {
   font-size: 1.5em;
   font-weight: bold;
 }
@@ -67,13 +66,11 @@ $gray: #d7d7d7;
 .panel {
   padding: 0 18px;
   background-color: white;
-  //display: none;
 }
 
 textarea {
   overflow: hidden;
   resize: vertical;
-  height: 120px;
 }
 
 .choose-file {
@@ -97,5 +94,67 @@ textarea {
   text-decoration: none;
   &:focus, &:hover {
     color: white;
+  }
+}
+
+
+.step-edit-wrapper {
+  margin-top: 20px;
+}
+
+
+.sub-steps-attributes-wrapper {
+  margin-top: 10px;
+  margin-left: 70px;
+
+  .sub-step-name {
+    font-size: 2em;
+    font-weight: 500;
+    height: auto;
+  }
+
+  .sub-step-content {
+    margin-top: 10px;
+    font-size: 1.2em;
+  }
+}
+
+.step-properties-wrapper {
+  margin-top: 10px;
+}
+
+form {
+  position: relative;
+
+  .title-bar {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    position: fixed;
+    z-index: 1000;
+    width: 800px;
+    background-color: #f6f7f9;
+    margin-top: 0;
+    padding: 30px;
+    top: 60px;
+    margin-left: -24px;
+  }
+
+  .edit-panel {
+    z-index: 10;
+    padding: 60px 0;
+
+  }
+
+  .action-btn {
+    position: fixed;
+    margin-left: -24px;
+    z-index: 1000;
+    width: 800px;
+    background-color: #f6f6f9;
+    margin-top: 0;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    bottom: 0px;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    //border-bottom: 1px solid black;
   }
 }

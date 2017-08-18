@@ -34,10 +34,14 @@ export class HeaderComponent implements OnInit {
       if (wn > 120) {
         $('.navbar').removeClass('custom-nav');
         $('.navbar').addClass('navbar-inverse');
+        $('.custom-navbar-brand').addClass('lighten');
+        $('.custom-navbar-brand').removeClass('darken');
       }
       else {
         $('.navbar').removeClass('navbar-inverse');
         $('.navbar').addClass('custom-nav');
+        $('.custom-navbar-brand').addClass('darken');
+        $('.custom-navbar-brand').removeClass('lighten');
       }
     });
   }
