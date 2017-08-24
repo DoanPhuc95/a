@@ -8,8 +8,14 @@
               <div class="panel text-center">
                 <div class="user-heading">
                   <a class="img-user">
-                    <img src="../img/no-avatar.png" alt="" title="">
+                    <img src="../../assets/picture/no-avatar.jpg" id="avatar">
                   </a>
+                  <a class="upload-pic" href="#"
+                    (click)="$event.preventDefault();chooseImage('#imageInput')">
+                    <i class="material-icons">linked_camera</i>
+                  </a>
+                  <input type="file" class="choose-file" id="imageInput"
+                    (change)="onChange($event)">
                 </div>
               </div>
             </div>

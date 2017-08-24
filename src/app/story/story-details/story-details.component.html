@@ -11,7 +11,7 @@
     <button md-menu-item (click)="edit()">
       <md-icon>Edit this Post</md-icon>
     </button>
-    
+
     <button md-menu-item (click)="delete()">
       <md-icon>Delete this Post</md-icon>
     </button>
@@ -19,7 +19,7 @@
 
   <div class="meta-data text-center">
    <p>
-     {{story.created_at | date}} by Doan Minh Phuc,
+     {{story.created_at | date}} by {{story.user_name}},
      {{story.comments.length | i18nPlural: commentMapping}},
      {{story.total_vote | i18nPlural: voteMapping}}
    </p>
@@ -49,12 +49,15 @@
         <button md-button class="col-md-3 font" (click)="onComment()">
           <i class="material-icons">comment</i> {{'comment' | translate}}
         </button>
+        <button md-button class="col-md-3 font" (click)="onCloneButtom(story.id)">
+          <i class="material-icons">library_add</i> {{'clone' | translate}}
+        </button>
         <div class="col-md-3"></div>
         <a md-button class="col-md-4 font">
           {{story.total_vote}} {{'step.votes' | translate}}
         </a>
       </md-toolbar>
-      <app-comment [comments]="story.comments" [story_id]="story.id"
+      <app-comment [comments]="story.comments" [story_id]="story.id" [user_of_story]="story.user_id"
         [commentable_id]="story.id" [commentable_type]="'story'"></app-comment>
     </div>
   </div>

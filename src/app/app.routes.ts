@@ -15,23 +15,18 @@ import { SearchComponent } from './search/search.component';
 import { StoryResolverService } from './story/shared/story-resolver.service';
 
 export const routing: Routes = [
-
   { path: '', redirectTo: '/story/list', pathMatch: 'full' },
   { path: 'story', component: StoryComponent,
     children: [
       { path: 'list', component: StoriesListComponent,
-        resolve: {stories: StoriesListResolverService}},
-      { path: 'create', component: CreateComponent, canActivate: [LoggedInGuard]},
+        resolve: { stories: StoriesListResolverService } },
+      { path: 'create', component: CreateComponent, canActivate: [LoggedInGuard] },
       { path: ':id', component: StoryDetailsComponent,
-        resolve: {story: StoryResolverService}
+        resolve: { story: StoryResolverService }
       }
     ]
   },
   { path: 'category/:id', component: CategoryComponent },
-    // children: [
-    //   { path: ':id', component: CategoryDetailsComponent }
-    // ]
-  // },
   { path: 'user', component: InfoUserComponent,
     canActivate: [LoggedInGuard],
   },
@@ -43,14 +38,9 @@ export const routing: Routes = [
     path: '', component: InfoUserComponent,
     canActivate: [NotLoggedInGuard],
   },
-  // {
-  //   path: 'signin', component: HomeComponent
-  // },
   {
     path: 'search', component: SearchComponent
   }
-
 ];
+
 export const AppRoutes  = RouterModule.forRoot(routing);
-export const URL = 'http://localhost:3000/';
-export const IMG_URL = 'http://res.cloudinary.com/my-stories/';

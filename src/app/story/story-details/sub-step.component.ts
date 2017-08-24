@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IStep } from '../shared/story.model';
 import * as $ from 'jquery';
 import { VoteService } from './vote.service';
-import { IMG_URL } from '../../app.routes';
+import { IMG_URL } from '../../constants';
 import { MdSnackBar } from '@angular/material';
 import { TranslateService } from 'ng2-translate';
 
@@ -71,7 +71,7 @@ export class SubStepComponent implements OnInit {
   }
 
   onFocusSubStep(id: number) {
-    const substep = "#substep" + id;
+    const substep = '#substep' + id;
     const presentHeight = $('.content').scrollTop() + $(substep).offset().top;
     $('.content').animate({
       scrollTop: presentHeight

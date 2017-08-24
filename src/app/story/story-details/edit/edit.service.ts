@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { URL } from '../../../app.routes';
+import { URL } from '../../../constants';
 
 @Injectable()
 export class EditStoryService {
   private apiURLStory;
-  constructor(private http: Http) {
-  }
+  constructor(private http: Http) { }
 
   editStory(story_id: number, data: any, token: string): Observable<any> {
     this.apiURLStory = URL + 'api/stories/' + story_id;

@@ -52,7 +52,9 @@
     "comment": "Comment",
     "comments": "Comments",
     "vote": "Vote",
-    "votes": "Votes"
+    "votes": "Votes",
+    "edit": "Edit ...",
+    "delete": "Delete ..."
   },
   "step": {
     "votes": "Voted",
@@ -71,6 +73,8 @@
   "writecomment": "Write a comment ...",
   "comment": "Comment",
   "like": "Like",
+  "clone": "Clone",
+  "colone_success": "Clone Success",
   "slogan": "Make the world around you better!",
   "sub_slogan": "Listen to the success stories from all people around the world, then create your own way to reach your destinations, your dreams, and your passions",
   "re_send": "Try Again",
@@ -92,5 +96,7 @@
   "editform": {
     "save": "Save",
     "editing": "Editing Story"
-  }
+  },
+  "search_placeholder": "Search...",
+  "brand": "MyStories"
 }

@@ -1,10 +1,12 @@
 $barc: rgba(168, 168, 168, 1);
 $whitec: #fff;
+$whited: #ccc;
 $typo: #2c3e50;
 $deeppink: #ff1493;
 $green: #33a444;
 $green1:rgba(0, 109, 0, .8);
 $gray: rgba(0, 0, 0, .075);
+$gray_trans: rgba(0, 0, 0, 0.075);
 @import url('https://fonts.googleapis.com/css?family=Oswald:600&subset=vietnamese');
 @import url('https://fonts.googleapis.com/css?family=Satisfy');
 
@@ -89,7 +91,7 @@ ng-template.right {
 }
 
 .form-control-search {
-  &:focus{
+  &:focus {
     border-color: $green;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px $gray, 0 0 1px $green1;
@@ -102,21 +104,21 @@ ng-template.right {
 }
 
 .search-form .form-group {
-  float: right !important;
-  transition: all 0.35s, border-radius 0s;
-  width: 32px;
-  height: 32px;
-  background-color: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border: 1px solid $whited;
+  background-color: $whitec;
+  box-shadow: 0 1px 1px $gray_trans inset;
   border-radius: 25px;
-  border: 1px solid #ccc;
+  height: 32px;
+  float: right !important;
+  transition: all .35s, border-radius 0s;
+  width: 32px;
 }
 .search-form .form-group input.form-control {
-  padding-right: 20px;
   border: 0 none;
   background: transparent;
   box-shadow: none;
   display:block;
+  padding-right: 20px;
 }
 .search-form .form-group input.form-control::-webkit-input-placeholder {
   display: none;

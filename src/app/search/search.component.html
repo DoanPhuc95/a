@@ -1,22 +1,24 @@
 <div class="container">
   <div class="search-text">
-      <div class="row text-center">
-        <div class="form">
-          <form #searchForm = "ngForm" (ngSubmit)="onSubmit(searchForm.value)" class="form-search form-horizontal">
-            <div ngModelGroup="search">
-              <input type="text" class="input-search" placeholder="Search" name="email" id="email" ngModel/>
-              <button type="submit" class="btn-search">Search</button>
-            </div>
-          </form>
-        </div>
+    <div class="row text-center">
+      <div class="form">
+        <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm.value)" class="form-search form-horizontal">
+          <div ngModelGroup="search">
+            <input type="text" class="input-search" placeholder="{{'search_placeholder' | translate}}" name="email" id="email" ngModel/>
+            <button type="submit" class="btn-search">{{'search_placeholder' | translate}}</button>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
   <md-tab-group>
     <md-tab label="{{'search.stories' | translate}}">
-    <div *ngIf="story_info" class="results"><h3>{{"search.results1" | translate}} {{story_info.length}} {{"search.results2" | translate}}</h3></div>
+      <div *ngIf="story_info" class="results">
+        <h3>{{"search.results1" | translate}} {{story_info.length}} {{"search.results2" | translate}}</h3>
+      </div>
       <div class="container ">
         <div class="row">
-            <app-story-thumbnail *ngFor="let story of story_info" [story]="story" ></app-story-thumbnail>
+          <app-story-thumbnail *ngFor="let story of story_info" [story]="story"></app-story-thumbnail>
         </div>
       </div>
     </md-tab>
@@ -24,16 +26,6 @@
       <br>
       <app-step-thumbnail *ngFor="let step of search_step" [step]="step">
       </app-step-thumbnail>
-        <!-- <md-card class="card-step">
-        <main>
-          <a class="cta-wrap">
-            <span>{{step._source.name}}</span>
-          </a>
-          <div class="info-wrap">
-            <p>{{step._source.content}}</p>
-          </div>
-        </main>
-      </md-card> -->
     </md-tab>
   </md-tab-group>
 </div>

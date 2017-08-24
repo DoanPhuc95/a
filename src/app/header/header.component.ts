@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   public current_url: any;
   constructor(public logoutService: LogoutService, public dialog: MdDialog, private router: Router,
     private _router:Router) {
-      this.current_url= window.location.href;
+      this.current_url = window.location.href;
       console.log(this.current_url);
   }
 
@@ -72,7 +72,7 @@ export class HeaderComponent implements OnInit {
       this.onError, this.onComplete);
   }
 
-  onSubmit(value: any){
+  onSubmit(value: any) {
     localStorage.setItem('valueSearch', JSON.stringify(value));
     this.router.navigate(['search']);
   }

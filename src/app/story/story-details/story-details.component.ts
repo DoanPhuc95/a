@@ -4,12 +4,11 @@ import { IStory } from '../shared/story.model';
 import { StoryResolverService } from '../shared/story-resolver.service';
 import { VoteService } from './vote.service';
 import * as $ from 'jquery';
-import { IMG_URL } from '../../app.routes';
+import { IMG_URL } from '../../constants';
 import { TranslateService } from 'ng2-translate';
 import { MdSnackBar, MdDialog } from '@angular/material';
 import { EditStoryComponent } from './edit/edit.component';
 import { StoryService } from '../shared/story.service';
-import { Response } from '@angular/http';
 
 @Component({
   templateUrl: './story-details.component.html',
@@ -115,5 +114,28 @@ export class StoryDetailsComponent implements OnInit {
     this.snackBar.open('Delete Error!, Please try again!', '', {
       duration: 5000
     });
+  }
+
+  onCloneButtom(id_story: number){
+    console.log(this.current_user.token)
+    this.storyservice.cloneStory(id_story, this.current_user.token).
+      subscribe(response => this.onCloneSuccess(response))
+  }
+
+  onCloneSuccess(response){
+    var jsonObject : any = JSON.parse(response._body);
+    let snackBarRef = this.snackBar.open('Clone Success', 'Open your profile', {
+      duration: 2000,
+    });
+    snackBarRef.onAction().subscribe(() =>
+    {
+      console.log(jsonObject);
+      this._router.navigate(['/user']);
+    }
+  )
+  }
+
+  openClone(){
+    this._router.navigate(['/']);
   }
 }

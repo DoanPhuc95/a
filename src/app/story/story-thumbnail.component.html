@@ -1,6 +1,6 @@
 <div class="col-md-6">
   <div class="story-thumbnail">
-<div class="col-md-5 story-featured-image" [ngStyle]="{'background-image': 'url('+checkExistPicture()+')' }"></div>
+    <div class="col-md-5 story-featured-image" [ngStyle]="{'background-image': 'url('+checkExistPicture()+')' }"></div>
     <div class="col-md-7 story-brief-details">
       <h4 class="story-thumbnail-name" [routerLink]="['/story', story.id]">{{story.name}}</h4>
       <p class="story-thumbnail-description">{{story.description}}</p>

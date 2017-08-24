@@ -25,7 +25,6 @@ export class StoriesListComponent implements OnInit {
         this.stories_categories = stories_categories
       }
     )
-
   }
 
   opendialog(){
