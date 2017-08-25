@@ -6,11 +6,8 @@ import { StoriesListResolverService } from './story/shared/stories-list-resolver
 import { CreateComponent } from './story/create/create.component';
 import { LoggedInGuard } from './logged-in.guard';
 import { NotLoggedInGuard } from './not-logged-in.guard';
-import { UpdateUserComponent } from './updateuser/updateuser.component';
 import { InfoUserComponent } from './info-user/info-user.component';
-import { HomeComponent } from './home/home.component';
 import { CategoryComponent } from './story/category/category.component';
-import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
 import { SearchComponent } from './search/search.component';
 import { StoryResolverService } from './story/shared/story-resolver.service';
 

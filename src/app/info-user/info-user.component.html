@@ -43,9 +43,11 @@
                 </md-menu>
               </div>
               <ng-template #follow>
-                <div class="col-md-6 col-md-offset-3">
-                  <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>
-                </div>
+                  <div class="col-md-6 col-md-offset-3">
+                    <button class="btn btn-success btn-block" (click)="onFollowButtom(user_id)">
+                      <span class="fa fa-plus-circle"></span>{{user_followed_status}}
+                    </button>
+                  </div>
               </ng-template>
             </div>
             <hr>
@@ -68,6 +70,15 @@
           <div class="card">
             <div class="header">
               <h4 class="title">{{'user.following' | translate}}</h4>
+              <div class="row">
+                <ul class="list-group">
+                  <div *ngFor="let user of following | slice:0:10">
+                    <a href="#" class="list-group-item" [routerLink]="['/user', user.id]">
+                      {{user.name}}
+                    </a>
+                  </div>
+                </ul>
+              </div>
             </div>
             <div class="content">
               <ul class="list-unstyled team-members">
@@ -77,19 +88,28 @@
         </md-card>
       </div>
       <div class="col-lg-8 col-md-7">
-        <div class="card">
-          <div class="head-all">
-            <div class="header text-center">
-              <h3 class="title">{{'user.all_stories' | translate}}</h3>
+        <md-tab-group>
+          <md-tab label="{{'user.all_stories' | translate}}">
+            <div class="card">
+              <br><br>
+              <div class="content">
+                <div>
+                  <app-story-thumbnail *ngFor="let story of stories" [story]="story" ></app-story-thumbnail>
+                </div>
+              </div>
             </div>
-            <hr>
-          </div>
-          <div class="content">
-            <div>
-              <app-story-thumbnail *ngFor="let story of stories" [story]="story" ></app-story-thumbnail>
+          </md-tab>
+          <md-tab label="{{'user.new_feed' | translate}}">
+            <div class="card">
+              <br><br>
+              <div class="content">
+                <div>
+                  <app-story-thumbnail *ngFor="let story of following_story" [story]="story" ></app-story-thumbnail>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </md-tab>
+        </md-tab-group>
       </div>
     </div>
   </div>

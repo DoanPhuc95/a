@@ -11,7 +11,8 @@ export interface IStory {
   steps: IStep[],
   comments: IComment[],
   users_voted: IUserVote[],
-  created_at: string
+  created_at: string,
+  avatar?: any
 }
 
 export interface IStep {
@@ -47,7 +48,7 @@ export interface IComment {
   id?: number,
   updated_at?: string,
   user_name: string,
-  user_id?: number
+  avatar?: any
 }
 
 export interface IUserVote {
